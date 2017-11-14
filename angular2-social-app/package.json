@@ -35,8 +35,6 @@
     "@types/socket.io-client": "^1.4.31",
     "angular2-template-loader": "0.6.0",
     "awesome-typescript-loader": "^3.3.0",
-    "node-sass": "4.6.1",
-    "sass-loader": "6.0.6",
     "file-loader": "1.1.5",
     "css-loader": "0.28.7",
     "html-webpack-plugin": "^2.30.1",

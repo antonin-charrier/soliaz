@@ -52,11 +52,6 @@ module.exports = {
             *
             */
             {
-                test: /\.scss$/,
-                use: ['to-string-loader', 'css-loader', 'sass-loader'],
-                exclude: [path.resolve(__dirname, '../src/styles')]
-            },
-            {
                 test: /\.html$/,
                 use: 'raw-loader',
                 exclude: [path.resolve(__dirname, '../src/index.html')]

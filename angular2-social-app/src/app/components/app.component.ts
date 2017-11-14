@@ -4,7 +4,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   selector: 'app',
   styles: [
     require('bootstrap/dist/css/bootstrap.min.css'),
-    require('./app.component.scss')
+    require('./app.component.css')
   ],
   templateUrl: './app.component.html',
   encapsulation: ViewEncapsulation.None
