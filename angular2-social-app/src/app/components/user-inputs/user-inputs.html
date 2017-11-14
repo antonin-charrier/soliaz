@@ -1,0 +1,27 @@
+<form (ngSubmit)="send()">
+    <textarea name="message" class="form-control" rows="3" [(ngModel)]="message"></textarea>
+    <div class="user-inputs-action">
+        <button class="btn btn-default" [disabled]="!message" type="submit" >Poster</button>
+    </div>
+</form>
+<style>
+    :host {
+        display: block;
+        padding: 10px 20px;
+        background: white;
+        border-top: 1px solid #d6d6d6;
+    }
+    textarea {
+        resize: none;
+    }
+    .user-inputs-action {
+        margin-top: 20px;
+    }
+
+    .user-inputs-action > button {
+        margin-right: 10px;
+    }
+    .user-inputs-action > button:last-child{
+        margin: 0;
+    }
+</style>

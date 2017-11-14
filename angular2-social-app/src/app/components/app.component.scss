@@ -1,0 +1,14 @@
+body, html, app {
+    height: 100%;
+    width: 100%;
+    background:#e9ebee;
+}
+app {
+    display: block;
+    overflow: auto;
+    max-width: 980px;
+    margin: auto; 
+    box-shadow: 0 0 3px #c3c3c3;
+}
+
+$var : #CCC;

@@ -1,0 +1,25 @@
+<div class="social-app-feed">
+    <!-- <post></post> -->
+</div>
+<div class="social-app-inputs">
+    <user-inputs (submitted)="onSubmit($event)" [channelId]="channelId"></user-inputs>
+</div>
+<style>
+    :host {
+        display: block;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+            background: #e9ebee;
+
+    }
+     .social-app-feed {
+        flex: 1;
+        overflow: auto;
+        padding: 0 20px;
+    }
+    .social-app-inputs {
+        height: 150px;
+    }
+</style>

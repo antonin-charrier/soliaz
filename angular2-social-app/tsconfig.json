@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "outDir": "dist",
+    "rootDir": ".",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "paths": {
+      "components": ["app/components/index"],
+      "components/pages": ["app/components/pages/index"],
+      "services": ["app/services/index"],
+      "pipes": ["app/pipes/index"],
+      "models": ["app/models/index"]
+    },
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": ["es2015", "es2016", "es2017" , "dom"]
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "useWebpackText": true
+  },
+  "angularCompilerOptions": {
+    "debug": false
+  },
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "atom": { "rewriteTsconfig": false }
+}

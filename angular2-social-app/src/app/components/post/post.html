@@ -1,0 +1,76 @@
+<div class="header">
+    <div class="user-picture">
+    </div>
+    <div class="username">
+    </div>
+    <div class="right">
+        <div class="actions">
+            <a>
+                <i class="glyphicon glyphicon-heart"></i>
+            </a>
+        </div>
+        <div class="date"></div>
+    </div>
+</div>
+<div class="body">
+    <pre class="message"></pre>
+    <!-- post.content here -->
+</div>
+<div class="footer">
+    <!-- Comments here -->
+    <user-inputs [channelId]="post.channel.id" (submitted)="onComment($event)"></user-inputs>
+</div>
+<style>
+    :host {
+        background: white;
+        display: block;
+        border-radius: 4px;
+        border: 1px solid #d8d8d8;
+        margin-top: 20px;
+    }
+
+    .user-picture {
+        width: 50px;
+        height: 50px;
+        border-radius: 2px;
+    }
+
+    .header {
+        padding: 15px;
+        display: flex;
+    }
+
+    .username {
+        font-weight: bold;
+        padding: 0 15px;
+    }
+
+    .right {
+        width: 100%;
+        display: flex;
+        /*align-items: center;*/
+        justify-content: flex-end;
+    }
+
+    .right>.date {
+        padding-left: 10px;
+    }
+
+    .actions>a {
+        color: white;
+        text-shadow: 0 0 3px black;
+        cursor: pointer;
+    }
+
+    .actions>a.liked {
+        color: #f17070;
+        text-shadow: none;
+        cursor: default;
+    }
+
+    pre.message {
+        background: none;
+        margin: 0;
+        border: none;
+    }
+</style>
