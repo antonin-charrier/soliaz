@@ -23,10 +23,22 @@ export class RegisterComponent {
     ) { }
 
     register() {
+        debugger;
         if (this.ngForm.form.invalid) {
             return;
         }
         
         // register user with registrationService
+        const controls = this.ngForm.form.controls;
+        this.model = {
+            username: controls.username.value,
+            password: controls.password.value,
+            pictureUrl: controls.pictureUrl.value
+        }
+        this.registrationService.register(this.model).then((response) => {
+            console.log(response);
+        }, (error) => {
+            console.error(error);
+        });
     }
 }
