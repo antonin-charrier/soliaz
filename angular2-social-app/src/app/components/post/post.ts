@@ -51,16 +51,8 @@ export class PostComponent {
         return splittedMessage;
     }
 
-    /**
-     * Send the new post message to the server
-     * @param message message to send
-     */
-    onComment(message: string) {
-    }
-
     toggleLike() {
         this.postService.like(this.post).then((response) => {
-            console.log(response);
             this.post.liked = true;
         }, (error) => {
             console.error(error);

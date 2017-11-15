@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class UserInputsComponent {
 
     @Input() channelId: string;
+    @Input() post: Post;
     message: string;
 
     @Output()
@@ -25,6 +26,14 @@ export class UserInputsComponent {
 
     send() {
         if (!this.message) return;
-        this.postService.post(this.channelId, this.message);
+        let promise: any;
+
+        if (this.post) {
+            this.postService.comment(this.post, this.message).then((response) => {
+                console.log(response);
+            })
+        } else {
+            this.postService.post(this.channelId, this.message);
+        }
     }
 }

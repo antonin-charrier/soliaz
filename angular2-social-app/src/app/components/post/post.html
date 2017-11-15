@@ -14,14 +14,16 @@
     </div>
 </div>
 <div class="body">
-    <pre class="message"></pre>
-    <div *ngFor="let message of messageArray">
+    <div class="message" *ngFor="let message of messageArray">
         <p *ngIf="message.type === 'text'">{{message.text}}</p>
         <picture-post-content *ngIf="message.type === 'picture'" [postContent]="message.picture"></picture-post-content>
     </div>
 </div>
 <div class="footer">
-    <user-inputs [channelId]="post.channel.id" (submitted)="onComment($event)"></user-inputs>
+    <div *ngFor="let comment of post.comments">
+            <post-comment [comment]="comment"></post-comment>
+    </div>
+    <user-inputs [channelId]="post.channel.id" [post]="post" (submitted)="onComment($event)"></user-inputs>
 </div>
 <style>
     :host {
@@ -71,9 +73,10 @@
         cursor: default;
     }
 
-    pre.message {
+    .message {
         background: none;
         margin: 0;
+        padding: 0 30px 30px 30px;
         border: none;
     }
 </style>

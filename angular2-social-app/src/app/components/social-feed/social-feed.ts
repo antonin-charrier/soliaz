@@ -39,9 +39,18 @@ export class SocialFeedComponent implements OnInit {
             } );
 
         this.postSocket.onPost(this.onPost.bind(this));
+        this.postSocket.onComment(this.onComment.bind(this));
     }
 
     private onPost(post: Post) {
         this.items.push(post);
+    }
+
+    onComment(comment) {
+        for (const post of this.items) {
+            if(comment.post.id === post.id) {
+                post.comments.push(comment)
+            }
+        }
     }
 }
