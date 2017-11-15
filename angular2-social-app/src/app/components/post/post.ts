@@ -41,9 +41,13 @@ export class PostComponent {
 
     splitMessage(message: string, urlArray: string[], idx: number) : string[] {
         const splittedMessage = message.split(urlArray[idx]);
-        if(splittedMessage[0].trim() !== "") this.messageArray.push({type: "text", text: splittedMessage[0].trim()});
-        if(urlArray[idx].trim() !== "") this.messageArray.push({type: "picture", picture: new PicturePostContent(urlArray[idx].trim())});
-        if(splittedMessage[1].split(urlArray[idx +1]).length > 1) {
+        if(splittedMessage[0].trim() !== "") {
+            this.messageArray.push({type: "text", text: splittedMessage[0].trim()});
+        }
+        if(urlArray[idx].trim() !== "" && (/\.(gif|jpg|jpeg|tiff|png)$/i).test(urlArray[idx].trim())) {
+            this.messageArray.push({type: "picture", picture: new PicturePostContent(urlArray[idx].trim())});
+        }
+        if(splittedMessage[1].split(urlArray[idx +1].trim()).length > 1) {
             this.splitMessage(splittedMessage[1], urlArray, idx+1);
         } else {
             if(splittedMessage[1].trim() !== "") this.messageArray.push({type: "text", text: splittedMessage[1].trim()});            
