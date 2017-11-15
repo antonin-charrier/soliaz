@@ -9,6 +9,15 @@ export interface AuthenticationResult {
     user?: AuthenticatedUser;
 }
 
+export interface RegistrationErrors {
+    takenUserName?: boolean;
+    validUserName?: boolean;
+    missingUserName?: boolean;
+    validPassword?: boolean;
+    missingPassword?: boolean;
+    validPictureUrl?: boolean;
+}
+
 export class UserRegistration {
     username: string;
     password: string;

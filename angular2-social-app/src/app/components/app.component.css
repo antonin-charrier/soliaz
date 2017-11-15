@@ -10,3 +10,6 @@ app {
     margin: auto; 
     box-shadow: 0 0 3px #c3c3c3;
 }
+i.error-message {
+    color: red;
+}

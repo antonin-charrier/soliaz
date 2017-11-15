@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
+import { AuthenticationService } from '../../services/index';
 import { ModalDirective } from 'ngx-bootstrap';
 import { ChannelService } from 'services';
 
@@ -20,6 +20,7 @@ export class AddChannelComponent {
     model = { name: '' };
 
     constructor(
+        private authService: AuthenticationService,        
         private channelService: ChannelService
     ) {
     }
@@ -28,5 +29,9 @@ export class AddChannelComponent {
         if (this.ngForm.valid) {
             // this.modal.hide() to close de dialog
         }
+    }
+
+    logout() {
+        this.authService.logout();
     }
 }
