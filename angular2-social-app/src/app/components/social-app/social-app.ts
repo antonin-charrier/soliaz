@@ -21,5 +21,6 @@ export class SocialAppComponent implements OnInit {
 
     async ngOnInit() { 
         // get the channels with the channelService
+        this.channels = await this.channelService.getAll();
     }
 }

@@ -17,6 +17,7 @@ export class AddChannelComponent {
     @ViewChild(NgForm)
     ngForm: NgForm;
 
+    failed = false;
     model = { name: '' };
 
     constructor(
@@ -26,8 +27,13 @@ export class AddChannelComponent {
     }
 
     save() {
+        this.failed = false;
         if (this.ngForm.valid) {
-            // this.modal.hide() to close de dialog
+            this.channelService.add(this.model.name).then((response) => {
+                this.modal.hide();                
+            }, (error) => {
+                this.failed = true;
+            })
         }
     }
 
