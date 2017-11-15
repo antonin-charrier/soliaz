@@ -37,7 +37,6 @@ export class PostComponent {
             this.splitMessage(this.post.message, this.urlArray, 0);
         else
             this.messageArray.push({type: "text", text: this.post.message.trim()});
-        console.log(this.messageArray);
     }
 
     splitMessage(message: string, urlArray: string[], idx: number) : string[] {
