@@ -18,6 +18,14 @@ export interface RegistrationErrors {
     validPictureUrl?: boolean;
 }
 
+export interface BuiltMessage {
+    type: string;
+    text?: string;
+    picture?: PicturePostContent;
+    video?: VideoPostContent;
+    youtube?: YoutubePostContent;
+}
+
 export class UserRegistration {
     username: string;
     password: string;

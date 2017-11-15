@@ -15,8 +15,10 @@
 </div>
 <div class="body">
     <pre class="message"></pre>
-    <p>{{post.message}}</p>
-    <picture-post-content [postContent]="picturePostContent"></picture-post-content>
+    <div *ngFor="let message of messageArray">
+        <p *ngIf="message.type === 'text'">{{message.message}}</p>
+        <picture-post-content *ngIf="message.type === 'picture'" [postContent]="message.picture"></picture-post-content>
+    </div>
 </div>
 <div class="footer">
     <user-inputs [channelId]="post.channel.id" (submitted)="onComment($event)"></user-inputs>
