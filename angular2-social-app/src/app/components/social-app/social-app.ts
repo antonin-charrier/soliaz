@@ -2,6 +2,8 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Channel } from 'models';
 import { ChannelService } from 'services';
 import { ActivatedRoute } from '@angular/router';
+import { PostSocketService } from 'app/services/PostSocketService';
+import { Router } from '@angular/router';
 
 /**
  * Main component. Display the channel list, the social feed and the notification bar for logged users.
@@ -15,12 +17,19 @@ export class SocialAppComponent implements OnInit {
     
     constructor(
         private channelService: ChannelService,
-        private route: ActivatedRoute
+        private postSocketService: PostSocketService,
+        private route: ActivatedRoute,
+        private router: Router
     ) {
     }
 
     async ngOnInit() { 
-        // get the channels with the channelService
         this.channels = await this.channelService.getAll();
+        this.postSocketService.onNewChannel(this.onNewChannel.bind(this));  
+        this.router.navigate(['/channel/' + this.channels[0].id]);                         
+    }
+
+    private onNewChannel(channel: Channel) {
+        this.channels.push(channel);
     }
 }
