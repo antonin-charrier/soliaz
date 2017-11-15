@@ -2,6 +2,7 @@
     <div class="user-picture">
     </div>
     <div class="username">
+            {{post.user.username}}
     </div>
     <div class="right">
         <div class="actions">
@@ -9,12 +10,12 @@
                 <i class="glyphicon glyphicon-heart"></i>
             </a>
         </div>
-        <div class="date"></div>
+        <div class="date">{{post.creationTime}}</div>
     </div>
 </div>
 <div class="body">
     <pre class="message"></pre>
-    <!-- post.content here -->
+    <p>{{post.message}}</p>
 </div>
 <div class="footer">
     <!-- Comments here -->
