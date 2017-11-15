@@ -38,7 +38,7 @@ export class RegisterComponent {
         
         // register user with registrationService
         this.model = {
-            username: controls.username.value,
+            username: controls.username.value.toLowerCase(),
             password: controls.password.value,
             pictureUrl: controls.pictureUrl.value
         }
@@ -54,7 +54,10 @@ export class RegisterComponent {
                 }, (error) => {
                     this.loading = false;
                 });
-            } else this.errors.takenUserName = true;
+            } else { 
+                this.errors.takenUserName = true; 
+                this.loading = false;
+            }
         }, (error) => {
             this.loading = false;
         });
