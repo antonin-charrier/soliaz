@@ -34,7 +34,11 @@ export class PostService {
 
     like(post: Post): Promise<any> {
         const url = `${this.config.url}/api/post/${post.id}/like`;
-        // like the post
+        
+        return this.http
+        .post(url, {})
+        .map( r => r.json())
+        .toPromise();
     }
     
     comment(post: Post, message: string): Promise<any> {

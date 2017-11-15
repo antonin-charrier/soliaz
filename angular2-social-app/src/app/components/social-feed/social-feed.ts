@@ -32,6 +32,9 @@ export class SocialFeedComponent implements OnInit {
                     .getAll(this.channelId)
                     .then((items) => {
                         this.items = items
+                        items.sort((a, b) => {
+                            return a.creationTime - b.creationTime;
+                        })
                     });
             } );
 

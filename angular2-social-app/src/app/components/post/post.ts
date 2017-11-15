@@ -11,6 +11,8 @@ import { PostService, PostSocketService, LoggedUser, MessageParser } from 'servi
 })
 export class PostComponent { 
     @Input() post: Post;
+
+    date: Date;
     
     constructor(
         private postSocket: PostSocketService, 
@@ -21,6 +23,7 @@ export class PostComponent {
 
     ngOnInit() {
         this.post.content = this.parser.parse(this.post);
+        this.date = new Date(this.post.creationTime);
     }
 
     /**
@@ -28,5 +31,14 @@ export class PostComponent {
      * @param message message to send
      */
     onComment(message: string) {
+    }
+
+    toggleLike() {
+        this.postService.like(this.post).then((response) => {
+            console.log(response);
+            this.post.liked = true;
+        }, (error) => {
+            console.error(error);
+        });
     }
 }
