@@ -1,5 +1,5 @@
 <div>
-    <img [src]="postContent.value.mediaUrl"/>
+    <img [src]="postContent.value.mediaUrl" onerror="this.onerror=null;this.src='./app/file_error.png';"/>
 </div>
 <style>
     img{
