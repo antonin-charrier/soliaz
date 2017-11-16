@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Channel } from 'models';
-import { ChannelService } from 'services';
+import { ChannelService, NotificationService } from 'services';
 import { ActivatedRoute } from '@angular/router';
 import { PostSocketService } from 'app/services/PostSocketService';
 import { Router } from '@angular/router';
@@ -16,11 +16,13 @@ export class SocialAppComponent implements OnInit {
     channels: Channel[] = [];
     
     constructor(
+        private notificationService: NotificationService,        
         private channelService: ChannelService,
         private postSocketService: PostSocketService,
         private route: ActivatedRoute,
         private router: Router
     ) {
+        notificationService.callback = this.refreshNotifications.bind(this);
     }
 
     async ngOnInit() { 
@@ -31,5 +33,9 @@ export class SocialAppComponent implements OnInit {
 
     private onNewChannel(channel: Channel) {
         this.channels.push(channel);
+    }
+
+    private refreshNotifications() {
+        
     }
 }

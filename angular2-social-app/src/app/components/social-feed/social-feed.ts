@@ -32,9 +32,7 @@ export class SocialFeedComponent implements OnInit {
                     .getAll(this.channelId)
                     .then((items) => {
                         this.items = items
-                        items.sort((a, b) => {
-                            return a.creationTime - b.creationTime;
-                        })
+                        this.sortItems();
                     });
             } );
 
@@ -44,6 +42,7 @@ export class SocialFeedComponent implements OnInit {
 
     private onPost(post: Post) {
         this.items.push(post);
+        this.sortItems();
     }
 
     onComment(comment) {
@@ -53,4 +52,12 @@ export class SocialFeedComponent implements OnInit {
             }
         }
     }
+
+    sortItems() {
+        this.items.sort((a, b) => {
+            return b.creationTime - a.creationTime;
+        })
+    }
+
+    
 }

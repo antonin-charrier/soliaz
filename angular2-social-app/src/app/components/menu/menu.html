@@ -4,6 +4,14 @@
     <div *ngFor="let channel of channels">
         <a class="list-group-item" [routerLink]="channel.id">{{channel.name}}</a>
     </div>
+    <div *ngIf="notifications.length > 0" class="notifications">
+        <div *ngFor="let notification of notifications">
+            {{ notification.type === notificationType.POST ? notification.username + " a posté un message": ""}}
+            {{ notification.type === notificationType.COMMENT ? notification.username + " a commenté un poste": ""}}
+            {{ notification.type === notificationType.LIKE ? notification.username + " a aimé un poste": ""}}
+            {{ notification.type === notificationType.CHANNEL ? "Un channel a été créé": ""}}
+        </div>
+    </div>
 </nav>
 
 <style>
@@ -11,5 +19,11 @@
         display: block;
         padding: 0;
         margin: 0;
+    }
+    .notifications {
+        margin-top: 50px;
+        height: 500px;
+        overflow: auto;
+        border-top: 1px solid rgb(179, 179, 179);
     }
 </style>
