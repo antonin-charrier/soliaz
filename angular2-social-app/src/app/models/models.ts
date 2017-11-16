@@ -36,6 +36,7 @@ export interface BuiltMessage {
     picture?: PicturePostContent;
     video?: VideoPostContent;
     youtube?: YoutubePostContent;
+    link?: string;
 }
 
 export class UserRegistration {

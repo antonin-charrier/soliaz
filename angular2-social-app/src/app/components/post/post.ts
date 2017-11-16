@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Post, PicturePostContent, BuiltMessage, VideoPostContent } from 'models';
+import { Post, PicturePostContent, BuiltMessage, VideoPostContent, YoutubePostContent } from 'models';
 import { PostService, PostSocketService, LoggedUser, MessageParser } from 'services';
 
 /**
@@ -44,10 +44,21 @@ export class PostComponent {
         if(splittedMessage[0].trim() !== "") {
             this.messageArray.push({type: "text", text: splittedMessage[0].trim()});
         }
-        if(urlArray[idx].trim() !== "" && (/\.(gif|jpg|jpeg|tiff|png)$/i).test(urlArray[idx].trim())) {
-            this.messageArray.push({type: "picture", picture: new PicturePostContent(urlArray[idx].trim())});
-        } else if(urlArray[idx].trim() !== "" && (/\.(avi|mov|mp4|webm|ogg|wav)$/i).test(urlArray[idx].trim())) {
-            this.messageArray.push({type: "video", video: new VideoPostContent(urlArray[idx].trim())});            
+        if(urlArray[idx].trim() !== "") { 
+            if((/\.(gif|jpg|jpeg|tiff|png)$/i).test(urlArray[idx].trim())) {
+                this.messageArray.push({type: "picture", picture: new PicturePostContent(urlArray[idx].trim())});
+            } else if((/\.(avi|mov|mp4|webm|ogg|wav)$/i).test(urlArray[idx].trim())) {
+                this.messageArray.push({type: "video", video: new VideoPostContent(urlArray[idx].trim())});            
+            } else if ((/(http[s]?:\/\/)?www\.(?:youtube\.com\/\S*(?:(?:\/e(?:mbed))?\/|watch\/?\?(?:\S*?&?v\=))|youtu\.be\/)([a-zA-Z0-9_-]{6,11})/gmi).test(urlArray[idx].trim())) {
+                let video_id = urlArray[idx].trim().split('v=')[1];
+                let ampersandPosition = video_id.indexOf('&');
+                if(ampersandPosition != -1) {
+                    video_id = video_id.substring(0, ampersandPosition);
+                }
+                this.messageArray.push({type: "youtube", youtube: new YoutubePostContent(video_id)});                        
+            } else {
+                this.messageArray.push({type: "link", link: urlArray[idx].trim()});                            
+            }
         }
         if(urlArray.length>idx+1 && splittedMessage[1].split(urlArray[idx +1].trim()).length > 1) {
             this.splitMessage(splittedMessage[1], urlArray, idx+1);
