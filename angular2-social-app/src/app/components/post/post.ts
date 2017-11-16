@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Post, PicturePostContent, BuiltMessage } from 'models';
+import { Post, PicturePostContent, BuiltMessage, VideoPostContent } from 'models';
 import { PostService, PostSocketService, LoggedUser, MessageParser } from 'services';
 
 /**
@@ -46,8 +46,10 @@ export class PostComponent {
         }
         if(urlArray[idx].trim() !== "" && (/\.(gif|jpg|jpeg|tiff|png)$/i).test(urlArray[idx].trim())) {
             this.messageArray.push({type: "picture", picture: new PicturePostContent(urlArray[idx].trim())});
+        } else if(urlArray[idx].trim() !== "" && (/\.(avi|mov|mp4|webm|ogg|wav)$/i).test(urlArray[idx].trim())) {
+            this.messageArray.push({type: "video", video: new VideoPostContent(urlArray[idx].trim())});            
         }
-        if(splittedMessage[1].split(urlArray[idx +1].trim()).length > 1) {
+        if(urlArray.length>idx+1 && splittedMessage[1].split(urlArray[idx +1].trim()).length > 1) {
             this.splitMessage(splittedMessage[1], urlArray, idx+1);
         } else {
             if(splittedMessage[1].trim() !== "") this.messageArray.push({type: "text", text: splittedMessage[1].trim()});            

@@ -17,6 +17,7 @@
     <div class="message" *ngFor="let message of messageArray">
         <p *ngIf="message.type === 'text'">{{message.text}}</p>
         <picture-post-content *ngIf="message.type === 'picture'" [postContent]="message.picture"></picture-post-content>
+        <video-post-content *ngIf="message.type === 'video'" [postContent]="message.video"></video-post-content>
     </div>
 </div>
 <div class="footer">
