@@ -18,6 +18,7 @@
         <p *ngIf="message.type === 'text'">{{message.text}}</p>
         <picture-post-content *ngIf="message.type === 'picture'" [postContent]="message.picture"></picture-post-content>
         <video-post-content *ngIf="message.type === 'video'" [postContent]="message.video"></video-post-content>
+        <youtube-post-content *ngIf="message.type === 'youtube'" [postContent]="message.youtube"></youtube-post-content>
     </div>
 </div>
 <div class="footer">
