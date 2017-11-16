@@ -15,10 +15,11 @@
 </div>
 <div class="body">
     <div class="message" *ngFor="let message of messageArray">
-        <p *ngIf="message.type === 'text'">{{message.text}}</p>
+        <span *ngIf="message.type === 'text'">{{message.text}}</span>
         <picture-post-content *ngIf="message.type === 'picture'" [postContent]="message.picture"></picture-post-content>
         <video-post-content *ngIf="message.type === 'video'" [postContent]="message.video"></video-post-content>
         <youtube-post-content *ngIf="message.type === 'youtube'" [postContent]="message.youtube"></youtube-post-content>
+        <a *ngIf="message.type === 'link'" [href]="message.link">{{message.link}}</a>
     </div>
 </div>
 <div class="footer">
