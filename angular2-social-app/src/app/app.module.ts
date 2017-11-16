@@ -40,6 +40,7 @@ import { authenticatedHttpFactory } from './services/AuthenticatedHttp'
     providers: [
         AUTH_PROVIDERS,
         services.AuthGuard,
+        services.NotificationService,
         services.UserStorageService,
         services.SocketService, {
             provide: services.ServerConfiguration,

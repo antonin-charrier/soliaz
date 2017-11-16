@@ -9,6 +9,18 @@ export interface AuthenticationResult {
     user?: AuthenticatedUser;
 }
 
+export interface Notification {
+    type: NotificationType;
+    username?: string;
+}
+
+export enum NotificationType {
+    POST,
+    LIKE,
+    COMMENT,
+    CHANNEL
+}
+
 export interface RegistrationErrors {
     takenUserName?: boolean;
     validUserName?: boolean;

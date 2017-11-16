@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Channel } from 'models';
+import { Channel, Notification, NotificationType } from 'models';
 
 /**
  * Side menu that allow to naviaget inside the differents channels
@@ -10,4 +10,7 @@ import { Channel } from 'models';
 })
 export class MenuComponent {
     @Input() channels: Channel[] = [];
+    @Input() notifications: Notification[] = [];
+
+    notificationType = NotificationType;
 }
