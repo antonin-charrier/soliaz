@@ -2,7 +2,13 @@
     <div class="username">
             {{comment.user.username}} :
     </div>
-    <p>{{comment.message}}</p>
+    <div *ngFor="let message of messageArray">
+        <span *ngIf="message.type === 'text'">{{message.text}}</span>
+        <picture-post-content *ngIf="message.type === 'picture'" [postContent]="message.picture"></picture-post-content>
+        <video-post-content *ngIf="message.type === 'video'" [postContent]="message.video"></video-post-content>
+        <youtube-post-content *ngIf="message.type === 'youtube'" [postContent]="message.youtube"></youtube-post-content>
+        <a *ngIf="message.type === 'link'" [href]="message.link">{{message.link}}</a>
+    </div>
 </div>
 
 <style>
