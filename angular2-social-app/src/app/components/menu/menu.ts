@@ -10,7 +10,4 @@ import { Channel, Notification, NotificationType } from 'models';
 })
 export class MenuComponent {
     @Input() channels: Channel[] = [];
-    @Input() notifications: Notification[] = [];
-
-    notificationType = NotificationType;
 }

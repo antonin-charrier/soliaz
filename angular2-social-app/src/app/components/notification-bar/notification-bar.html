@@ -1,9 +1,17 @@
-
+<div *ngIf="notifications.length > 0" class="notifications">
+    <div *ngFor="let notification of notifications">
+        {{ notification.type === notificationType.POST ? notification.username + " a posté un message": ""}}
+        {{ notification.type === notificationType.COMMENT ? notification.username + " a commenté un poste": ""}}
+        {{ notification.type === notificationType.LIKE ? notification.username + " a aimé un poste": ""}}
+        {{ notification.type === notificationType.CHANNEL ? "Un channel a été créé": ""}}
+    </div>
+</div>
 <style>
     :host {
         display: block;
         height: 100%;
-        width: 150px;
+        width: 200px;
+        padding: 3px;
         background: white;
         flex-shrink: 0;
         border-left: 1px solid #d6d6d6;

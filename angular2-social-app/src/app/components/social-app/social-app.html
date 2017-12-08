@@ -1,11 +1,11 @@
 <aside>
-  <menu [channels]="channels" [notifications]="notificationService.notifications"></menu>
+  <menu [channels]="channels"></menu>
 </aside>
 <main>
     <div class="social-app-body-content">
         <router-outlet></router-outlet>
     </div>
-    <notification-bar></notification-bar>
+    <notification-bar [notifications]="notificationService.notifications"></notification-bar>
 </main>
 
 <style>
