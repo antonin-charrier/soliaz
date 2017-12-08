@@ -1,5 +1,13 @@
-<button class="btn btn-default" (click)="logout()">Log out</button>
-<button class="btn btn-default" (click)="modal.show()">Add channel</button>
+<img id="logo" src="./app/soliaz.png"/>
+<div id="buttons">
+    <button class="btn btn-default" (click)="modal.show()">
+        <i class="glyphicon glyphicon-plus"></i>
+        Add channel
+    </button>
+    <button title="Log out" class="btn btn-default" (click)="logout()">
+        <i class="glyphicon glyphicon-log-out"></i>
+    </button>
+</div>
 <div class="modal fade" bsModal #modal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <form class="modal-content" (ngSubmit)="save()" #f="ngForm">
@@ -27,10 +35,15 @@
     :host {
         display: block;
         text-align: center;
-        padding: 15px;
+        padding: 15px 0px;
     }
 
     .modal {
         text-align: left;
+    }
+    
+    #logo {
+        width: 80%;
+        margin-bottom: 20px;
     }
 </style>
