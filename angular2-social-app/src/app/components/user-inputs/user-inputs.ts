@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, Inject } from '@angular/core';
 import { PostService, MessageParser } from '../../services/index';
 import { Post } from '../../models';
 import { ActivatedRoute } from '@angular/router';
@@ -29,11 +29,11 @@ export class UserInputsComponent {
         let promise: any;
 
         if (this.post) {
-            this.postService.comment(this.post, this.message).then((response) => {
-                console.log(response);
-            })
+            this.postService.comment(this.post, this.message);
         } else {
             this.postService.post(this.channelId, this.message);
+            const socialAppFeed = document.getElementById('main-div');
+            socialAppFeed.scrollTop = 0;
         }
     }
 }
