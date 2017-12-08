@@ -14,6 +14,7 @@ export class PostComponent {
 
     date: Date;
     messageArray: BuiltMessage[];
+    userPicture: PicturePostContent;
     
     constructor(
         private postSocket: PostSocketService, 
@@ -24,6 +25,11 @@ export class PostComponent {
 
     ngOnInit() {
         this.messageArray = [];
+        if(this.post.user.pictureUrl != "") {
+            this.userPicture = new PicturePostContent(this.post.user.pictureUrl);            
+        } else {
+            this.userPicture = new PicturePostContent("./app/user-default.png");                        
+        }
         this.post.content = this.parser.parse(this.post);
         this.date = new Date(this.post.creationTime);
         this.messageArray = this.parser.buildMessage(this.post.message);
