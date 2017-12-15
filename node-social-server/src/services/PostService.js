@@ -30,8 +30,16 @@ let PostService = class PostService {
         this.socketService = socketService;
     }
     find(id) {
-        return this.db.first(`match (p:Post {id: {id}}) return p`, { id })
-            .then(r => r && r.p ? new graph_1.Post(r.p) : null);
+        return this.db.first(`match (p:Post {id: {id}})-[:CHANNEL_POST]-(c:Channel) return p, c`, { id })
+            .then(r => {
+            if (r) {
+                const post = new graph_1.Post(r.p);
+                const channel = new graph_1.Channel(r.c);
+                post.channel = channel;
+                return post;
+            }
+            return null;
+        });
     }
     like(id, userId) {
         return __awaiter(this, void 0, void 0, function* () {

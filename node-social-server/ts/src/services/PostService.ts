@@ -2,7 +2,7 @@ import { inject, injectable } from "inversify";
 import { TYPES } from "../constants";
 import { IGraphDb } from "./IGraphDb";
 import { NewChannel, NewPost } from "../models/request";
-import { Channel, Post,  UserCommentEdge , LikeEdge, PostCommentEdge} from "../database/graph";
+import { Channel, Post, UserCommentEdge, LikeEdge, PostCommentEdge } from "../database/graph";
 import { UserStore, SocketService } from "./index";
 
 @injectable()
@@ -15,17 +15,26 @@ export class PostService {
     }
 
     find(id: string): Promise<Post> {
-        return this.db.first<any>(`match (p:Post {id: {id}}) return p`, {id})
-            .then( r => r && r.p ? new Post(r.p) : null );
+        return this.db.first<any>(`match (p:Post {id: {id}})-[:CHANNEL_POST]-(c:Channel) return p, c`, { id })
+            .then(r => {
+                if (r) {
+                    const post: any = new Post(r.p);
+                    const channel = new Channel(r.c);
+                    post.channel = channel;
+                    return post;
+                }
+                
+                return null;
+            });
     }
 
     async like(id: string, userId: string): Promise<LikeEdge> {
         const user = await this.userStore.find(userId);
         const post = await this.find(id);
         const like = await this.db.first<any>(
-            `match (:Post {id: {postId}})-[l:LIKE]-(:User {id: {userId}}) return l`, 
-            {postId: id, userId}
-        ).then( r => r && r.l ? r.l : null );
+            `match (:Post {id: {postId}})-[l:LIKE]-(:User {id: {userId}}) return l`,
+            { postId: id, userId }
+        ).then(r => r && r.l ? r.l : null);
 
         if (!user) {
             throw new Error("User not exists");
@@ -37,7 +46,7 @@ export class PostService {
             return Promise.resolve(like);
         }
 
-        const likeEdge = new LikeEdge(user, post); 
+        const likeEdge = new LikeEdge(user, post);
         return this.db.createEdge(likeEdge)
             .then(e => {
                 this.socketService.emit("post:like", {
@@ -46,7 +55,7 @@ export class PostService {
                     user
                 });
                 return e;
-            } );
+            });
     }
 
     async comment(id: string, newComment: NewPost): Promise<Post> {
@@ -62,7 +71,7 @@ export class PostService {
             throw new Error("User not exists");
         }
 
-        return this.db.transaction<Post>( async db => {
+        return this.db.transaction<Post>(async db => {
             await db.createVertex(comment);
             const userComment = new UserCommentEdge(user, comment);
             const postComment = new PostCommentEdge(comment, post);
@@ -80,6 +89,6 @@ export class PostService {
             };
             this.socketService.emit("post:comment", c);
             return e;
-        } );
+        });
     }
 }

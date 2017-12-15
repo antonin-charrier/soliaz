@@ -35,7 +35,8 @@ export class NotificationService {
     addPostNotification(post: Post): void {
         this.notifications.push({
             type: NotificationType.POST,
-            username: post.user.username
+            username: post.user.username,
+            post
         })
         this.store();
     }
@@ -43,7 +44,8 @@ export class NotificationService {
     addCommentNotification(comment: Comment): void {
         this.notifications.push({
             type: NotificationType.COMMENT,
-            username: comment.user.username
+            username: comment.user.username,
+            comment
         })
         this.store();
     }
@@ -51,14 +53,16 @@ export class NotificationService {
     addLikeNotification(like: Like): void {
         this.notifications.push({
             type: NotificationType.LIKE,
-            username: like.user.username
+            username: like.user.username,
+            like
         })
         this.store();
     }
 
     addChannelNotification(channel: Channel): void {
         this.notifications.push({
-            type: NotificationType.CHANNEL
+            type: NotificationType.CHANNEL,
+            channel
         })
         this.store();
     }
@@ -66,7 +70,8 @@ export class NotificationService {
     addUserNotification(user: User): void {
         this.notifications.push({
             type: NotificationType.USER,
-            username: user.username
+            username: user.username,
+            user
         })
         this.store();
     }

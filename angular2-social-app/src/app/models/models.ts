@@ -12,6 +12,11 @@ export interface AuthenticationResult {
 export interface Notification {
     type: NotificationType;
     username?: string;
+    post?: Post;
+    like?: Like;
+    user?: User;
+    comment?: Comment;
+    channel?: Channel;
 }
 
 export enum NotificationType {

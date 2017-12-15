@@ -10,7 +10,7 @@ import { NewPost } from "../models/request";
 @injectable()
 @Controller("/api/post", authorize())
 export class PostController {
-    constructor( 
+    constructor(
         @inject(TYPES.IGraphDb) private _db: IGraphDb,
         @inject(TYPES.PostService) private postService: PostService
     ) {
