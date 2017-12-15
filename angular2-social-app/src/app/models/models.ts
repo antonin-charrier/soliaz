@@ -18,7 +18,8 @@ export enum NotificationType {
     POST,
     LIKE,
     COMMENT,
-    CHANNEL
+    CHANNEL,
+    USER
 }
 
 export interface RegistrationErrors {

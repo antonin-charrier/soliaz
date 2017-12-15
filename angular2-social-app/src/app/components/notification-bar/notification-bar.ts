@@ -15,4 +15,13 @@ export class NotificationBarComponent implements OnInit {
     constructor() { }
 
     ngOnInit() { }
+
+    clickNotif() {
+
+    }
+
+    clearNotif() {
+        this.notifications = [];
+        localStorage.removeItem("notifications");
+    }
 }

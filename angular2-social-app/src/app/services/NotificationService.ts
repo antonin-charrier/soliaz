@@ -6,6 +6,8 @@ import {
     Post,
     Like,
     Comment,
+    Channel,
+    User
  } from "models"
 
 @Injectable()
@@ -23,6 +25,7 @@ export class NotificationService {
         postSocket.onComment(this.addCommentNotification.bind(this));
         postSocket.onLike(this.addLikeNotification.bind(this));
         postSocket.onNewChannel(this.addChannelNotification.bind(this));
+        postSocket.onUserConnect(this.addUserNotification.bind(this));
     }
 
     set callback(callback) {
@@ -53,9 +56,17 @@ export class NotificationService {
         this.store();
     }
 
-    addChannelNotification(like: Like): void {
+    addChannelNotification(channel: Channel): void {
         this.notifications.push({
-            type: NotificationType.CHANNEL,
+            type: NotificationType.CHANNEL
+        })
+        this.store();
+    }
+
+    addUserNotification(user: User): void {
+        this.notifications.push({
+            type: NotificationType.USER,
+            username: user.username
         })
         this.store();
     }

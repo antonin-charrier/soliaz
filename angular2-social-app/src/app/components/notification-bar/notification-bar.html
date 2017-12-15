@@ -4,7 +4,14 @@
         {{ notification.type === notificationType.COMMENT ? notification.username + " a commenté un poste": ""}}
         {{ notification.type === notificationType.LIKE ? notification.username + " a aimé un poste": ""}}
         {{ notification.type === notificationType.CHANNEL ? "Un channel a été créé": ""}}
+        {{ notification.type === notificationType.USER ? notification.username + " s'est connecté": ""}}        
     </div>
+</div>
+<div id="clear" *ngIf="notifications.length > 0">
+    <button class="btn btn-default" (click)="clearNotif()">
+        <i class="glyphicon glyphicon-remove"></i>
+        Clear
+    </button>
 </div>
 <style>
     :host {
@@ -23,5 +30,10 @@
 
     .notification:hover {
         background-color: CornflowerBlue;
+    }
+    #clear {
+        display: block;
+        text-align: center;
+        padding: 15px 0px;
     }
 </style>
