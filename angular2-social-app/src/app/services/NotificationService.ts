@@ -39,6 +39,7 @@ export class NotificationService {
             post
         })
         this.store();
+        this.callbackFunction();
     }
 
     addCommentNotification(comment: Comment): void {
@@ -48,6 +49,7 @@ export class NotificationService {
             comment
         })
         this.store();
+        this.callbackFunction();
     }
 
     addLikeNotification(like: Like): void {
@@ -57,6 +59,7 @@ export class NotificationService {
             like
         })
         this.store();
+        this.callbackFunction();
     }
 
     addChannelNotification(channel: Channel): void {
@@ -65,6 +68,7 @@ export class NotificationService {
             channel
         })
         this.store();
+        this.callbackFunction();
     }
 
     addUserNotification(user: User): void {
@@ -74,6 +78,7 @@ export class NotificationService {
             user
         })
         this.store();
+        this.callbackFunction();
     }
 
     store(): void {
