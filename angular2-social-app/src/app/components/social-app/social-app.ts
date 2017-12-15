@@ -4,6 +4,7 @@ import { ChannelService, NotificationService } from 'services';
 import { ActivatedRoute } from '@angular/router';
 import { PostSocketService } from 'app/services/PostSocketService';
 import { Router } from '@angular/router';
+import * as Notifications from 'angular2-notifications';
 
 /**
  * Main component. Display the channel list, the social feed and the notification bar for logged users.
@@ -20,7 +21,8 @@ export class SocialAppComponent implements OnInit {
         private channelService: ChannelService,
         private postSocketService: PostSocketService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private _service: Notifications.NotificationsService
     ) {
         notificationService.callback = this.refreshNotifications.bind(this);
     }

@@ -6,6 +6,7 @@
         <router-outlet></router-outlet>
     </div>
     <notification-bar [notifications]="notificationService.notifications"></notification-bar>
+    <simple-notifications [options]="options" (onCreate)="created($event)" (onDestroy)="destroyed($event)"></simple-notifications>
 </main>
 
 <style>
